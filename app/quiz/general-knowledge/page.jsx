@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import QuizQuestion from '../../components/QuizQuestion'; 
 
-// intrebari 
+// Array-ul de întrebări rămâne în exterior.
 const questions = [
   {
     question: 'Care este cel mai lung fluviu din lume?',
@@ -34,7 +34,10 @@ const questions = [
 
 ];
 
-const GeneralKnowledgeQuiz = () => {
+// FIX: Am redefinit și exportat funcția ca o Componentă React
+export default function GeneralKnowledgeQuizPage() {
+  
+  // TOATE HOOK-URILE SUNT ACUM FOLOSITE CORECT ÎN INTERIOR
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [score, setScore] = useState(0);
   const router = useRouter(); 
@@ -74,7 +77,7 @@ const GeneralKnowledgeQuiz = () => {
     setScore(newScore);
     localStorage.setItem('score', newScore);
 
-    // home lin k
+    // home link
     router.push('/');
   };
 
@@ -94,5 +97,3 @@ const GeneralKnowledgeQuiz = () => {
     </div>
   );
 };
-
-export default GeneralKnowledgeQuiz;

@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; 
@@ -9,34 +9,36 @@ const questions = [
     question: 'Ce este fotosinteza?',
     options: ['Procesul prin care plantele produc oxigen', 'Procesul de digestie', 'Formarea norilor', 'Topirea ghețarilor'],
     correct: ['Procesul prin care plantele produc oxigen'],
-},
-{
+  },
+  {
     question: 'Ce planetă este cunoscută ca „Planeta Roșie”?',
     options: [ 'Venus','Marte', 'Jupiter', 'Mercur'],
     correct: ['Marte'],
-},
-{
+  },
+  {
     question: 'Care este cel mai abundent gaz din atmosfera Pământului?',
     options: [ 'Oxigen','Azot', 'Dioxid de carbon', 'Heliu'],
     correct: ['Azot'],
-},
-{
+  },
+  {
     question: 'Ce este gravitația?',
     options: [ 'Forța care ține avioanele în aer', 'Efectul de rotație al Pământului', 'Magnetismul între polii Pământului','Forța care atrage obiectele către centrul Pământului'],
     correct: ['Forța care atrage obiectele către centrul Pământului'],
-},
-{
+  },
+  {
     question: 'Ce element chimic are simbolul „H”?',
     options: ['Hidrogen', 'Heliu', 'Mercur', 'Oxigen'],
     correct: ['Hidrogen'],
-},
-
+  },
 ];
 
-const scienceQuiz = () => {
+// FIX: Am redenumit și redefinit funcția ca o Componentă React exportată
+export default function ScienceQuizPage() { 
+  
+  // Hook-urile sunt acum folosite corect, în interiorul componentei
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [score, setScore] = useState(0);
-  const router = useRouter(); // Folosim router din `next/navigation`
+  const router = useRouter(); 
 
   useEffect(() => {
     const savedScore = localStorage.getItem('score');
@@ -73,13 +75,12 @@ const scienceQuiz = () => {
     setScore(newScore);
     localStorage.setItem('score', newScore);
 
-    // Redirecționăm către pagina principală
     router.push('/');
   };
 
   return (
     <div>
-      <h1>Quiz de Cultură Generală</h1>
+      <h1>Quiz de Știință</h1>
       {questions.map((question, index) => (
         <QuizQuestion
           key={index}
@@ -93,5 +94,3 @@ const scienceQuiz = () => {
     </div>
   );
 };
-
-export default scienceQuiz;
